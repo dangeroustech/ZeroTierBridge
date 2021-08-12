@@ -16,6 +16,12 @@ You also need to add a static route into ZeroTier so that the traffic is routed 
 
 ![brave_4wHd9zo193](https://user-images.githubusercontent.com/1135584/129230132-11bcfb72-7d9b-4b40-a4e5-72130c583077.png)
 
+### Persistent Storage
+
+If you would like the container to retain the same ZeroTier client ID on reboot, attach a volume as per the below.
+
+`docker run --privileged -e ZT_NETWORK=NETWORK_ID_HERE --volume zt1:/var/lib/zerotier-one/ zerotierbridge:latest`
+
 ### Caveat: Architecture
 
 If you need to run this on a device with different architecture (a raspberry pi, for instance), then just edit line 3 of the Dockerfile.
