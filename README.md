@@ -5,6 +5,7 @@ A container to provide out-of-the-box bridging functionality to a ZeroTier netwo
 ## Running
 
 `docker build -t zerotierbridge .`
+
 `docker run --privileged -e ZT_NETWORK=NETWORK_ID_HERE zerotierbridge:latest`
 
 Once running, log into your ZeroTier interface and approve the new device. Click the wrench next to the name and select 'Allow Ethernet Bridging.' It's that easy!
