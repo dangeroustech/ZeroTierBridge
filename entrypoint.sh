@@ -26,7 +26,7 @@ done
 # Print Client Info
 echo "$(zerotier-cli info)"
 
-### Set IPTables to allow NATting
+# Set IPTables to allow NATting
 sysctl -w net.ipv4.ip_forward=1 > /dev/null
 PHY_IFACE=eth0; ZT_IFACE=$(ls /sys/class/net | grep ^zt)
 
