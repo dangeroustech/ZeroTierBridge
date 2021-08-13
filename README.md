@@ -30,5 +30,5 @@ If you were using a Raspberry Pi 4, you would change this to `ARCH=arm64` and th
 
 ## TODO
 
-- Add docker-compose.yml
 - Add kubernetes deployment YAML
+- Allow multiple network joins
