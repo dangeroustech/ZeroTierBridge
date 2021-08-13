@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  zerotierbridge:
+    container_name: zerotierbridge
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ARCH: arm64
+        VERSION: 1.6.5
+    restart: always
+    privileged: true
+    volumes:
+      - zt_config:/var/lib/zerotier-one
+    environment:
+      - ZT_NETWORK=3efa5cb78af73143
+volumes:
+  zt_config:
