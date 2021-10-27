@@ -4,7 +4,7 @@ A container to provide out-of-the-box bridging functionality to a ZeroTier netwo
 
 ## Running
 
-### Prerequisites
+### Prerequisites
 
 - Docker running as your logged in user (i.e. not having to run `sudo docker-compose xyz`) - [Linux instructions here](https://docs.docker.com/engine/install/linux-postinstall/)
 
