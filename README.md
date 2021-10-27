@@ -4,6 +4,10 @@ A container to provide out-of-the-box bridging functionality to a ZeroTier netwo
 
 ## Running
 
+### Prerequisites
+
+- Docker running as your logged in user (i.e. not having to run `sudo docker-compose xyz`) - [Linux instructions here](https://docs.docker.com/engine/install/linux-postinstall/)
+
 ### ZeroTier UI Changes
 
 Once running, log into your ZeroTier interface and approve the new device. Click the wrench next to the name and select 'Allow Ethernet Bridging.'
