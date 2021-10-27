@@ -1,7 +1,7 @@
 FROM debian:buster as stage
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/buster/pool/main/z/zerotier-one
 ARG ARCH=amd64
-ARG VERSION=1.6.5
+ARG VERSION=1.6.6
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y ca-certificates=20200601~deb10u2 curl=7.64.0-4+deb10u2
 RUN curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH}.deb"
 
