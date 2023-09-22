@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.1...v1.0.2) (2023-09-22)
+
+
+### Bug Fixes
+
+* quick filter to not release on PRs ([c34324b](https://github.com/dangeroustech/ZeroTierBridge/commit/c34324b998690edeadd3d680987587c0fe93c525))
+
+
+
 ## [1.0.1](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.0...v1.0.1) (2023-09-22)
 
 
