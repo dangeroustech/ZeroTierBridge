@@ -1,5 +1,5 @@
 FROM debian:bookworm as stage
-ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/buster/pool/main/z/zerotier-one
+ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/bookworm/pool/main/z/zerotier-one
 ARG ARCH=amd64
 ARG VERSION=1.12.2
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y ca-certificates curl
