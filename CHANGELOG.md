@@ -1,3 +1,12 @@
+## [1.0.10](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.9...v1.0.10) (2023-09-22)
+
+
+### Bug Fixes
+
+* upload sarif file ([89e2953](https://github.com/dangeroustech/ZeroTierBridge/commit/89e29531f070539935a93b6f55d791170ea42e72))
+
+
+
 ## [1.0.9](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.8...v1.0.9) (2023-09-22)
 
 
