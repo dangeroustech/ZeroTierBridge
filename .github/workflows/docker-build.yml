@@ -57,7 +57,6 @@ jobs:
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           format: spdx-json
-          artifact-name: sbom.spdx.json
           output-file: ./sbom.spdx.json
 
       - name: Create Release
