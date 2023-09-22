@@ -35,13 +35,6 @@ jobs:
           push: true
           tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
 
-      - name: Syft SBOM
-        uses: anchore/sbom-action@v0
-        with:
-          image: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-
       - name: Changelog
         uses: TriPSs/conventional-changelog-action@v3
         id: changelog
@@ -65,3 +58,12 @@ jobs:
           tag_name: ${{ steps.changelog.outputs.tag }}
           name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
+
+      - name: Syft SBOM
+        uses: anchore/sbom-action@v0
+        id: sbom
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        with:
+          image: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
