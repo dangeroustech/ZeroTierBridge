@@ -2,7 +2,7 @@ name: Generate SBOM
 
 on:
   release:
-    types: [created]
+    types: [created, published]
 
 jobs:
   GenerateSBOM:
