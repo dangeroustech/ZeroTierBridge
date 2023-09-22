@@ -1,3 +1,13 @@
+## [1.0.11](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.10...v1.0.11) (2023-09-22)
+
+
+### Bug Fixes
+
+* only alert on CVEs that have a fix ([977df48](https://github.com/dangeroustech/ZeroTierBridge/commit/977df48644e0a7112dc25f9f04afa6d84ce87db9))
+* pull correct deb package ([fed1c28](https://github.com/dangeroustech/ZeroTierBridge/commit/fed1c2860230d39aeb80178c79697c1c41fed23d))
+
+
+
 ## [1.0.10](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.9...v1.0.10) (2023-09-22)
 
 
