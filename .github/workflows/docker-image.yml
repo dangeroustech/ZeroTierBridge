@@ -35,5 +35,25 @@ jobs:
           push: true
           tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        id: changelog
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-message: "chore 🤖: Release {version} [skip ci]"
+          output-file: "CHANGELOG.md"
+          tag-prefix: "v"
+          fallback-version: "1.0.0"
+          release-count: 0 # preserve all versions in changelog
+          skip-on-empty: false # otherwise we don't publish fixes
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        id: release
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
