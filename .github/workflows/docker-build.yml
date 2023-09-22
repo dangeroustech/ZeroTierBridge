@@ -50,7 +50,7 @@ jobs:
         id: scan
         with:
           sbom: sbom.spdx.json
-          severity-cutoff: high
+          severity-cutoff: medium
           fail-build: false
           only-fixed: true
           by-cve: true
