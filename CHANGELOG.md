@@ -1,3 +1,12 @@
+## [1.0.12](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.11...v1.0.12) (2023-09-22)
+
+
+### Bug Fixes
+
+* correct double message ([6e3c269](https://github.com/dangeroustech/ZeroTierBridge/commit/6e3c2690fc612e42c1d2818cc8d4bdfb9d5e39ba))
+
+
+
 ## [1.0.11](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.10...v1.0.11) (2023-09-22)
 
 
