@@ -1,4 +1,8 @@
-# 1.0.0 (2023-09-22)
+## [1.0.1](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.0...v1.0.1) (2023-09-22)
+
+
+
+# [1.0.0](https://github.com/dangeroustech/ZeroTierBridge/compare/f902dcc0c4615801fb65e6c90342efe96789319f...v1.0.0) (2023-09-22)
 
 
 ### Bug Fixes
