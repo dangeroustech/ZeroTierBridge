@@ -38,6 +38,7 @@ jobs:
       - name: Changelog
         uses: TriPSs/conventional-changelog-action@v3
         id: changelog
+        if: ${{ github.event_name != 'pull_request' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-message: "chore 🤖: Release {version} [skip ci]"
