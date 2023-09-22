@@ -35,6 +35,28 @@ jobs:
           push: true
           tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
 
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        id: sbom
+        with:
+          image: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          format: spdx-json
+          output-file: ./sbom.spdx.json
+
+      - name: Scan SBOM
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          sbom: sbom.spdx.json
+          fail-build: false
+
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
       - name: Changelog
         uses: TriPSs/conventional-changelog-action@v3
         id: changelog
@@ -47,17 +69,6 @@ jobs:
           fallback-version: "1.0.0"
           release-count: 0 # preserve all versions in changelog
           skip-on-empty: false # otherwise we don't publish fixes
-
-      - name: Generate SBOM
-        uses: anchore/sbom-action@v0
-        id: sbom
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        with:
-          image: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          format: spdx-json
-          output-file: ./sbom.spdx.json
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
