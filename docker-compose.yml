@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   zerotierbridge:
@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
       args:
         ARCH: amd64
-        VERSION: 1.6.6
+        VERSION: 1.12.2
     restart: always
     privileged: true
     volumes:
