@@ -66,7 +66,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-message: "chore 🤖: Release {version} [skip ci]"
+          git-message: "chore 🤖: Release {version}"
           output-file: "CHANGELOG.md"
           tag-prefix: "v"
           fallback-version: "1.0.0"
