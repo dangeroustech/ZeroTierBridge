@@ -6,6 +6,9 @@ on:
     branches:
       - "main"
 
+env:
+  REGISTRY_IMAGE: registry.dangerous.tech/dangeroustech/zerotierbridge
+
 jobs:
   Docker_Release:
     name: "Docker Build And Release"
@@ -33,7 +36,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Build and Push
+      - name: Build
         id: docker_build
         uses: docker/build-push-action@v5
         with:
@@ -44,6 +47,46 @@ jobs:
           push: true
           platforms: linux/${{ matrix.arch }}
           tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true
+
+      - name: Export Digests
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.docker_build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        uses: actions/upload-artifact@v3
+        with:
+          name: digests
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  MergeRefs:
+    name: "Do The Horrible Merge Thing"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download digests
+        uses: actions/download-artifact@v3
+        with:
+          name: digests
+          path: /tmp/digests
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY_IMAGE }}
+
+      - name: Create manifest list and push
+        working-directory: /tmp/digests
+        run: |
+          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
+            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
+      - name: Inspect image
+        run: |
+          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
 
       - name: Generate SBOM
         uses: anchore/sbom-action@v0

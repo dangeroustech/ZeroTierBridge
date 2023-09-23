@@ -3,12 +3,7 @@ version: "3"
 services:
   zerotierbridge:
     container_name: zerotierbridge
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        ARCH: amd64
-        VERSION: 1.12.2
+    image: registry.dangerous.tech/dangeroustech/zerotierbridge
     restart: always
     privileged: true
     volumes:
