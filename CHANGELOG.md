@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.13...v1.1.0) (2023-09-23)
+
+
+### Features
+
+* multi-platform builds ([aab5c07](https://github.com/dangeroustech/ZeroTierBridge/commit/aab5c079dcd559b7c3123aa72d02f7691827083e))
+
+
+
 ## [1.0.13](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.12...v1.0.13) (2023-09-22)
 
 
