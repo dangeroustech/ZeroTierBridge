@@ -7,8 +7,14 @@ on:
       - "main"
 
 jobs:
-  DockerBuildAndRelease:
+  Docker_Release:
+    name: "Docker Build And Release"
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        arch: ["amd64", "arm64"]
+        version: ["1.12.2"]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -32,7 +38,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          build-args: |
+            ARCH=${{ matrix.arch }}
+            VERSION=${{ matrix.version }}
           push: true
+          platforms: linux/${{ matrix.arch }}
           tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
 
       - name: Generate SBOM
