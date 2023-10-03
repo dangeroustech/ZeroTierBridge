@@ -15,7 +15,8 @@ permissions:
 
 on:
   pull_request:
-    types: assigned
+    branches:
+      - issue*
   push:
     branches:
       - main
