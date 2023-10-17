@@ -145,6 +145,9 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Changelog
         uses: TriPSs/conventional-changelog-action@v3
         id: changelog
