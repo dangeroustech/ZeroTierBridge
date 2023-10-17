@@ -1,23 +1,38 @@
 name: Publish Docker Image
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
-      - "main"
+      - main
 
 env:
   REGISTRY_IMAGE: registry.dangerous.tech/dangeroustech/zerotierbridge
 
 jobs:
   Docker_Build:
-    name: "Docker Build And Release"
+    name: Docker Build And Release
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
-        arch: ["amd64", "arm64"]
-        version: ["1.12.2"]
+        arch: [amd64, arm64]
+        version: [1.12.2]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -46,7 +61,6 @@ jobs:
             VERSION=${{ matrix.version }}
           push: true
           platforms: linux/${{ matrix.arch }}
-          # tags: registry.dangerous.tech/dangeroustech/zerotierbridge:latest
           outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true
 
       - name: Export Digests
@@ -64,7 +78,8 @@ jobs:
           retention-days: 1
 
   MergeRefs:
-    name: "Do The Horrible Merge Thing"
+    name: Do The Horrible Merge Thing
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs:
       - Docker_Build
@@ -137,9 +152,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-message: "chore 🤖: Release {version}"
-          output-file: "CHANGELOG.md"
-          tag-prefix: "v"
-          fallback-version: "1.0.0"
+          output-file: CHANGELOG.md
+          tag-prefix: v
+          fallback-version: 1.0.0
           release-count: 0 # preserve all versions in changelog
           skip-on-empty: false # otherwise we don't publish fixes
 
