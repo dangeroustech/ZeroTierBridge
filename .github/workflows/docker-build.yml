@@ -2,7 +2,7 @@ name: Publish Docker Image
 permissions:
   actions: read
   checks: read
-  contents: read
+  contents: write
   deployments: read
   issues: read
   discussions: read
@@ -138,7 +138,6 @@ jobs:
           severity-cutoff: medium
           fail-build: false
           only-fixed: true
-          by-cve: true
 
       - name: upload Anchore scan SARIF report
         uses: github/codeql-action/upload-sarif@v2
