@@ -1,3 +1,19 @@
+## [1.1.1](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.1.0...v1.1.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* 401 ([bca9ec3](https://github.com/dangeroustech/ZeroTierBridge/commit/bca9ec3df76f9c6ea114e099dd9317c58489d0b2))
+* correct deps ([be55349](https://github.com/dangeroustech/ZeroTierBridge/commit/be55349cefbf291a9ce4233e65a785dad4ec3830))
+* correct multiplatform builds ([593036c](https://github.com/dangeroustech/ZeroTierBridge/commit/593036c8ad8099a3a4e7b1ac9b1dcfbdb8e04a98))
+* push by digest again ([8d55074](https://github.com/dangeroustech/ZeroTierBridge/commit/8d550748cde552ef5552e02770842d4e91f99253))
+* push by digest is breaking things ([2c987a3](https://github.com/dangeroustech/ZeroTierBridge/commit/2c987a3bbe0492aaf22b26e446cb7d96a6c9115d))
+* re-setup buildx ([f8d7326](https://github.com/dangeroustech/ZeroTierBridge/commit/f8d73263fdfd328ad38a77ff381e93bd8bda5750))
+* remove tag to hopefully fix digest pushing ([5cd683c](https://github.com/dangeroustech/ZeroTierBridge/commit/5cd683cb7a83e37eb5b4717309d672f35b256c25))
+* set latest tag ([46ee60c](https://github.com/dangeroustech/ZeroTierBridge/commit/46ee60cbc9091e93f977701a771ba9ce0216e5d1))
+
+
+
 # [1.1.0](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.0.13...v1.1.0) (2023-09-23)
 
 
