@@ -2,7 +2,7 @@ FROM debian:13.1 AS stage
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/trixie/pool/main/z/zerotier-one
 ARG TARGETARCH
-ARG VERSION=1.12.2
+ARG VERSION=1.16.0-2
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y \
     ca-certificates=20250419 \
     curl=8.14.1-2
