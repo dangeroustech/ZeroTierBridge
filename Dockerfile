@@ -1,4 +1,4 @@
-FROM debian:12.6 AS stage
+FROM debian:13.1 AS stage
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/bookworm/pool/main/z/zerotier-one
 ARG TARGETARCH
 ARG VERSION=1.12.2
@@ -17,7 +17,7 @@ RUN set -e; \
     echo "Downloading ZeroTier: arch=$ARCH_MAPPING version=$VERSION"; \
     curl -fsSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH_MAPPING}.deb"
 
-FROM debian:12.6
+FROM debian:13.1
 ARG VERSION
 RUN mkdir /app
 WORKDIR /app
