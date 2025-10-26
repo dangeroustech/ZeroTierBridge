@@ -5,8 +5,17 @@ ARG VERSION=1.12.2
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y \
     ca-certificates=20230311+deb12u1 \
     curl=7.88.1-10+deb12u14
-RUN ARCH_MAPPING=$([ "$TARGETARCH" = "amd64" ] && echo amd64 || ([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo "$TARGETARCH")) \
-    && curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH_MAPPING}.deb"
+RUN set -e; \
+    DETECTED_ARCH="${TARGETARCH:-}"; \
+    if [ -z "$DETECTED_ARCH" ]; then DETECTED_ARCH="$(dpkg --print-architecture)"; fi; \
+    case "$DETECTED_ARCH" in \
+      amd64|x86_64) ARCH_MAPPING=amd64 ;; \
+      arm64|aarch64) ARCH_MAPPING=arm64 ;; \
+      armhf|armv7*) ARCH_MAPPING=armhf ;; \
+      *) echo "Unsupported architecture: $DETECTED_ARCH" >&2; exit 1 ;; \
+    esac; \
+    echo "Downloading ZeroTier: arch=$ARCH_MAPPING version=$VERSION"; \
+    curl -fsSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH_MAPPING}.deb"
 
 FROM debian:12.6
 ARG VERSION
