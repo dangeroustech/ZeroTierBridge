@@ -21,4 +21,5 @@ RUN dpkg -i zerotier-one.deb && rm -f zerotier-one.deb
 RUN echo "${VERSION}" >/etc/zerotier-version
 COPY entrypoint.sh entrypoint.sh
 RUN chmod 755 entrypoint.sh
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 CMD sh -c 'zerotier-cli info 2>/dev/null | grep -q ONLINE'
 ENTRYPOINT ["/app/entrypoint.sh"]
