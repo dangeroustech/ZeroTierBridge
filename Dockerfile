@@ -1,5 +1,6 @@
 FROM debian:13.1 AS stage
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/trixie/pool/main/z/zerotier-one
 ARG TARGETARCH
 ARG VERSION=1.16.0-2
@@ -20,6 +21,7 @@ RUN set -e; \
 
 FROM debian:13.1
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 RUN mkdir /app
 WORKDIR /app
