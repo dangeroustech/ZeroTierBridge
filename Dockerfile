@@ -1,4 +1,4 @@
-FROM debian:12.6 as stage
+FROM debian:12.6 AS stage
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/bookworm/pool/main/z/zerotier-one
 ARG TARGETARCH
 ARG VERSION=1.12.2
