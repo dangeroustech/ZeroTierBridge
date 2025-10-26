@@ -72,10 +72,11 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v5
         with:
-          name: digests
+          name: digests-${{ matrix.arch }}
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1
+          overwrite: true
 
   MergeRefs:
     name: Do The Horrible Merge Thing
@@ -87,8 +88,9 @@ jobs:
       - name: Download digests
         uses: actions/download-artifact@v6
         with:
-          name: digests
+          pattern: digests-*
           path: /tmp/digests
+          merge-multiple: true
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
