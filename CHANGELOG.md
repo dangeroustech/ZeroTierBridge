@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.1.2...v1.2.0) (2025-10-26)
+
+
+### Bug Fixes
+
+* **workflow:** update artifact naming and handling in docker-build.yml ([96ebbf8](https://github.com/dangeroustech/ZeroTierBridge/commit/96ebbf805d2cb3bb4089a5a0dc70114e3c16cc1b))
+
+
+### Features
+
+* **docker:** add health check to Dockerfile for zerotier-cli ([7d643e3](https://github.com/dangeroustech/ZeroTierBridge/commit/7d643e3ff6c0683d335baae5138ceef475cd37c3))
+
+
+
 ## [1.1.2](https://github.com/dangeroustech/ZeroTierBridge/compare/v1.1.1...v1.1.2) (2023-10-18)
 
 
