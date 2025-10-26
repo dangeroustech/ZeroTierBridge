@@ -61,6 +61,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ env.REGISTRY_IMAGE }}:latest
+          provenance: false
+          sbom: false
+          outputs: type=registry,compression=zstd,compression-level=6,oci-mediatypes=true,force-compression=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
