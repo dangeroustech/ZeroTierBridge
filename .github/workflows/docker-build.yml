@@ -131,7 +131,7 @@ jobs:
           output-file: ./sbom.spdx.json
 
       - name: Scan SBOM
-        uses: anchore/scan-action@v3
+        uses: anchore/scan-action@v7
         id: scan
         with:
           sbom: sbom.spdx.json
