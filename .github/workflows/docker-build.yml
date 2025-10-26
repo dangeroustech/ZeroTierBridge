@@ -57,7 +57,7 @@ jobs:
         with:
           context: .
           build-args: |
-            VERSION=1.12.2
+            VERSION=1.16.0-2
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ env.REGISTRY_IMAGE }}:latest
