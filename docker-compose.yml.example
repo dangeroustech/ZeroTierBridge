@@ -5,11 +5,15 @@ services:
     container_name: zerotierbridge
     image: registry.dangerous.tech/dangeroustech/zerotierbridge
     restart: always
-    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      net.ipv4.ip_forward: "1"
     volumes:
       - zt_config:/var/lib/zerotier-one
     environment:
-      - ZT_NETWORKS=NETWORK_ID_1 NETWORK_ID_2 NETWORK_ID_3
-      - ZT_BRIDGE=true
+      ZT_NETWORKS: "NETWORK_ID_1 NETWORK_ID_2 NETWORK_ID_3"
+      ZT_BRIDGE: "true"
 volumes:
   zt_config:
