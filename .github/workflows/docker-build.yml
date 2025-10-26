@@ -148,7 +148,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: TriPSs/conventional-changelog-action@v6
         id: changelog
         if: ${{ github.event_name != 'pull_request' }}
         with:
