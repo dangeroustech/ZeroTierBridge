@@ -25,6 +25,7 @@ RUN mkdir /app
 WORKDIR /app
 COPY --from=stage zerotier-one.deb .
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y \
+    adduser=3.152 \
     procps=2:4.0.4-9 \
     iptables=1.8.11-2 \
     openssl=3.5.1-1 \
