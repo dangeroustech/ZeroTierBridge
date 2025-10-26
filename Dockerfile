@@ -1,13 +1,15 @@
 FROM debian:12.6 as stage
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/bookworm/pool/main/z/zerotier-one
-ARG ARCH=amd64
+ARG TARGETARCH
 ARG VERSION=1.12.2
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y \
     ca-certificates=20230311+deb12u1 \
     curl=7.88.1-10+deb12u14
-RUN curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH}.deb"
+RUN ARCH_MAPPING=$([ "$TARGETARCH" = "amd64" ] && echo amd64 || ([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo "$TARGETARCH")) \
+    && curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH_MAPPING}.deb"
 
 FROM debian:12.6
+ARG VERSION
 RUN mkdir /app
 WORKDIR /app
 COPY --from=stage zerotier-one.deb .
