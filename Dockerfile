@@ -1,4 +1,4 @@
-FROM debian:13.1 AS stage
+FROM debian:13.3 AS stage
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/trixie/pool/main/z/zerotier-one
@@ -19,7 +19,7 @@ RUN set -e; \
     echo "Downloading ZeroTier: arch=$ARCH_MAPPING version=$VERSION"; \
     curl -fsSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${ARCH_MAPPING}.deb"
 
-FROM debian:13.1
+FROM debian:13.3
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
